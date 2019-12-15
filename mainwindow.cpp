@@ -66,17 +66,25 @@ void MainWindow::on_DefectList_itemSelectionChanged()
 void MainWindow::SetDefectInformation(const QString type)
 {
     if(type == "A") {
-        ui->DefectInformation->setText("Type A. High defect.\nManifested in next cars:\n" +
-                                       hystoryChecking("A"));
+        ui->DefectInformation->setText("Type A. High defect."
+                                       "\nDefault chance: " + QString::number(defect("A").chance()) +
+                                       "\nDefault var: " + QString::number(defect("A").var()) + " (faulty)"
+                                       "\n\nManifested in next cars:" + hystoryChecking("A"));
     } else if (type == "B") {
-        ui->DefectInformation->setText("Type B. Middle defect.\nManifested in next cars:\n" +
-                                       hystoryChecking("B"));
+        ui->DefectInformation->setText("Type B. Middle defect."
+                                       "\nDefault chance: " + QString::number(defect("B").chance()) +
+                                       "\nDefault var: " + QString::number(defect("B").var()) +
+                                       "\n\nManifested in next cars:" + hystoryChecking("B"));
     } else if (type == "C") {
-        ui->DefectInformation->setText("Type C. Middle-Light defect.\nManifested in next cars:\n" +
-                                       hystoryChecking("C"));
+        ui->DefectInformation->setText("Type C. Middle-Light defect."
+                                       "\nDefault chance: " + QString::number(defect("C").chance()) +
+                                       "\nDefault var: " + QString::number(defect("C").var()) +
+                                       "\n\nManifested in next cars:" + hystoryChecking("C"));
     } else {
-        ui->DefectInformation->setText("Type D. Light defect.\nManifested in next cars:\n" +
-                                       hystoryChecking("D"));
+        ui->DefectInformation->setText("Type D. Light defect."
+                                       "\nDefault chance: " + QString::number(defect("D").chance()) +
+                                       "\nDefault var: " + QString::number(defect("D").var()) +
+                                       "\n\nManifested in next cars:" + hystoryChecking("D"));
     }
 }
 

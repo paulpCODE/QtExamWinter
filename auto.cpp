@@ -111,7 +111,7 @@ int Auto::currDefVarCalculatingForAuto(defect &currDef, const int &userTimeInYea
 {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> rand(3, 3);
+    std::uniform_int_distribution<> rand(1, 4);
     const int num = rand(gen);
     if (currDef.var() == -1) {
         return currDef.var();
