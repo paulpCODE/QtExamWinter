@@ -20,7 +20,7 @@ struct DefectInformation {
     QDate fixed;
 };
 
-class Auto : public available
+class Auto : private available
 {
 private:
     QString _model;
@@ -28,13 +28,21 @@ private:
     int _year;
     int _mileage;
 
-    std::vector<DefectInformation> _hystory;
+
     void _generateHystory(const int &count);
 public:
-    void clearHystory();
+    std::vector<DefectInformation> hystory;
+    QString hystoryInString();
+
+    double currDefChanceCalculatingForAuto(defect &currDef, Auto car, const int &userTimeInYears);
+    int currDefVarCalculatingForAuto(defect &currDef, Auto car, const int &userTimeInYears);
     Auto generateAuto();
+
+
     QString model();
     QString manufacturer();
+    int year();
+    int miliage();
 
     Auto();
 };

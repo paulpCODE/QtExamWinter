@@ -5,6 +5,7 @@
 #include <QListWidget>
 #include <QListWidgetItem>
 #include "auto.h"
+#include "defect.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -22,8 +23,17 @@ public:
 
 private slots:
     void createAutoList();
+    void SetDefectInformation(const QString type);
+    QString hystoryChecking(const QString type);
+
 
     void on_SetTimeButton_clicked();
+
+    void on_DefectList_itemSelectionChanged();
+
+    void on_AutoList_itemSelectionChanged();
+
+    void on_AutoList_itemDoubleClicked(QListWidgetItem *item);
 
 private:
     Ui::MainWindow *ui;
