@@ -44,8 +44,8 @@ void MainWindow::on_SetTimeButton_clicked()
     defect currDef(ui->SettedDefect->toPlainText());
     const int userTimeInYears = ui->SetTime->text().toInt();
     const int i = ui->AutoList->currentRow();
-    const double updatedChance = autoList[i].currDefChanceCalculatingForAuto(currDef, autoList[i], userTimeInYears);
-    const int updatedVar = autoList[i].currDefVarCalculatingForAuto(currDef, autoList[i], userTimeInYears);
+    const double updatedChance = autoList[i].currDefChanceCalculatingForAuto(currDef, userTimeInYears);
+    const int updatedVar = autoList[i].currDefVarCalculatingForAuto(currDef, userTimeInYears);
 
     ui->AlgorithmResults->setText("CAR: " + autoList[i].model() + " " + autoList[i].manufacturer() +
                                   "\nDEFECT TYPE: " + ui->SettedDefect->toPlainText() +

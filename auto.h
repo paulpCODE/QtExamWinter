@@ -34,8 +34,8 @@ public:
     std::vector<DefectInformation> hystory;
     QString hystoryInString();
 
-    double currDefChanceCalculatingForAuto(defect &currDef, Auto car, const int &userTimeInYears);
-    int currDefVarCalculatingForAuto(defect &currDef, Auto car, const int &userTimeInYears);
+    double currDefChanceCalculatingForAuto(defect &currDef, const int &userTimeInYears);
+    int currDefVarCalculatingForAuto(defect &currDef, const int &userTimeInYears);
     Auto generateAuto();
 
 

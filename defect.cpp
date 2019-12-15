@@ -54,19 +54,19 @@ defect::defect(const QString type)
 {
     if(type == "A") {
         _type = A;
-        _chance = 0.001;
+        _chance = 0.01;
         _var = -1;
     } else if (type == "B") {
         _type = B;
-        _chance = 0.004;
+        _chance = 0.04;
         _var = 20000;
     } else if (type == "C") {
         _type = C;
-        _chance = 0.007;
+        _chance = 0.07;
         _var = 10000;
     } else if (type == "D") {
         _type = D;
-        _chance = 0.01;
+        _chance = 0.1;
         _var = 2000;
     }
 }

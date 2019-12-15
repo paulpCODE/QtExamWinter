@@ -83,7 +83,7 @@ QString Auto::hystoryInString()
     return hystoryInString;
 }
 
-double Auto::currDefChanceCalculatingForAuto(defect &currDef, Auto car, const int &userTimeInYears)
+double Auto::currDefChanceCalculatingForAuto(defect &currDef, const int &userTimeInYears)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
@@ -92,36 +92,36 @@ double Auto::currDefChanceCalculatingForAuto(defect &currDef, Auto car, const in
     if(num == 1) { //fix
         return currDef.chance();
     } else if (num == 2) { //_year
-        currDef.Set_chance(currDef.chance() + 0.001*(QDate::currentDate().year() + userTimeInYears - _year));
+        currDef.Set_chance(currDef.chance() + 0.01*(QDate::currentDate().year() + userTimeInYears - _year));
         return currDef.chance();
     } else if (num == 3) {
-        currDef.Set_chance(currDef.chance() + ((_mileage + 12000*userTimeInYears) / 10000000));
+        currDef.Set_chance((_mileage + 12000*userTimeInYears)*0.000001 + currDef.chance());
         return currDef.chance();
     } else {
         for(int j = 0; j < hystory.size(); j++) {
             if(currDef.type() == hystory[j].Defect.type()) {
-                currDef.Set_chance(currDef.chance() + 0.002);
+                currDef.Set_chance(currDef.chance() + 0.02);
             }
         }
         return currDef.chance();
     }
 }
 
-int Auto::currDefVarCalculatingForAuto(defect &currDef, Auto car, const int &userTimeInYears)
+int Auto::currDefVarCalculatingForAuto(defect &currDef, const int &userTimeInYears)
 {
     std::random_device rd;
     std::mt19937 gen(rd());
-    std::uniform_int_distribution<> rand(1, 4);
+    std::uniform_int_distribution<> rand(3, 3);
     const int num = rand(gen);
     if (currDef.var() == -1) {
         return currDef.var();
     } else if (num == 1) {
         return currDef.var();
     } else if (num == 2) {
-        currDef.Set_var(currDef.var() + 1100*(QDate::currentDate().year() + userTimeInYears - _year));
+        currDef.Set_var(currDef.var() + 600*(QDate::currentDate().year() + userTimeInYears - _year));
         return currDef.var();
     } else if (num == 3) {
-        currDef.Set_var(currDef.var() + ((_mileage + 12000*userTimeInYears) / 10));
+        currDef.Set_var(currDef.var() + ((_mileage + 12000*userTimeInYears) * 0.05));
         return currDef.var();
     } else {
         if(_manufacturer == "BMW-AG") {
