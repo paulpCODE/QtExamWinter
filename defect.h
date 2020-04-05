@@ -1,6 +1,5 @@
 #ifndef DEFECT_H
 #define DEFECT_H
-#include "random"
 #include <QString>
 
 enum TYPE {not_setted, A, B, C, D};

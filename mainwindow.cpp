@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "random.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -12,10 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::createAutoList()
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(6,10);
-    const int autoListSize = dist(gen);
+    const int autoListSize = Random::RandInt(6, 10);
     Auto car;
     for(int i = 0; i < autoListSize; i++) {
         QListWidgetItem *carInfo = new QListWidgetItem;

@@ -24,7 +24,8 @@ SOURCES += \
 HEADERS += \
     auto.h \
     defect.h \
-    mainwindow.h
+    mainwindow.h \
+    random.h
 
 FORMS += \
     mainwindow.ui

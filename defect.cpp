@@ -1,11 +1,9 @@
 #include "defect.h"
+#include "random.h"
 
 void defect::SetRandType()
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> dist(1, 10);
-    const int i = dist(gen);
+    const int i = Random::RandInt(1, 10);
     if (i == 2 || i == 3) {
         _type = B;
     }

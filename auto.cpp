@@ -1,4 +1,5 @@
 #include "auto.h"
+#include "random.h"
 
 
 available::available()
@@ -13,20 +14,13 @@ available::available()
 Auto Auto::generateAuto()
 {
     const QDate currDate = QDate::currentDate();
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distNum(0, ModelAndManufacturer.size() - 1);
-    std::uniform_int_distribution<> distCount(1, 4);
-    std::uniform_int_distribution<> distYear(2000, currDate.year() - 1);
-    std::uniform_int_distribution<> distmileage(5, 20);
 
-    const int i = distNum(gen);
-    int count = 0;
+    const int i = Random::RandInt(0, ModelAndManufacturer.size() - 1);
     _model = ModelAndManufacturer[i].first;
     _manufacturer = ModelAndManufacturer[i].second;
-    _year = distYear(gen);
-    _mileage = 1000*distmileage(gen) + 12000*(currDate.year() - _year);
-    count = distCount(gen) + currDate.year() - _year;
+    _year = Random::RandInt(2000, currDate.year() - 1);
+    _mileage = 1000*Random::RandInt(5, 20) + 12000*(currDate.year() - _year);
+    int count = Random::RandInt(1, 4) + currDate.year() - _year;
     _generateHystory(count);
 
     return *this;
@@ -35,24 +29,19 @@ Auto Auto::generateAuto()
 void Auto::_generateHystory(const int &count)
 {
     const QDate currDate = QDate::currentDate();
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> distDay(1, 31);
-    std::uniform_int_distribution<> distMon(1, 12);
-    std::uniform_int_distribution<> distYear(_year, currDate.year() - 1);
 
     DefectInformation element;
     int day, mon, year;
 
     for (int i = 0; i < count; i++) {
         element.Defect.SetRandType();
-        day = distDay(gen);
-        mon = distMon(gen);
-        year = distYear(gen);
+        day = Random::RandInt(1, 31);
+        mon = Random::RandInt(1, 12);
+        year = Random::RandInt(_year, currDate.year() - 1);
         element.appeared.setDate(year, mon, day);
-        day = day + distDay(gen);
+        day = day + Random::RandInt(1, 31);
         if(day > 31) { day = day - 31; mon++; }
-        mon = mon + distMon(gen);
+        mon = mon + Random::RandInt(1, 12);
         if(mon > 12) { mon = mon - 12; year++; }
         element.fixed.setDate(year, mon, day);
 
@@ -85,10 +74,7 @@ QString Auto::hystoryInString()
 
 double Auto::currDefChanceCalculatingForAuto(defect &currDef, const int &userTimeInYears)
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> rand(1, 4);
-    const int num = rand(gen);
+    const int num = Random::RandInt(1, 4);
     if(num == 1) { //fix
         return currDef.chance();
     } else if (num == 2) { //_year
@@ -109,10 +95,7 @@ double Auto::currDefChanceCalculatingForAuto(defect &currDef, const int &userTim
 
 int Auto::currDefVarCalculatingForAuto(defect &currDef, const int &userTimeInYears)
 {
-    std::random_device rd;
-    std::mt19937 gen(rd());
-    std::uniform_int_distribution<> rand(1, 4);
-    const int num = rand(gen);
+    const int num = Random::RandInt(1, 4);
     if (currDef.var() == -1) {
         return currDef.var();
     } else if (num == 1) {
