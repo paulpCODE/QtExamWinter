@@ -13,7 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 void MainWindow::createAutoList()
 {
-    const int autoListSize = Random::RandInt(6, 10);
+    const int autoListSize = Random::RandInt(6, 15);
     Auto car;
     for(int i = 0; i < autoListSize; i++) {
         QListWidgetItem *carInfo = new QListWidgetItem;
